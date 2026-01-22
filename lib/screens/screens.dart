@@ -14,7 +14,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
     with TickerProviderStateMixin {
   Timer? _simTimer;
 
-  // --- FÍSICA ---
+  // Valores para las barras e informacion
   double _waterLevel = 1.0;
   double _tempLevel = 0.0;
   double _energyOutput = 1000;
@@ -23,9 +23,9 @@ class _ControlRoomPageState extends State<ControlRoomPage>
   double _radiationmSv = 0.04;
   double _flowRate = 100.0;
 
-  int _secondsRemaining = 30;
+  int _secondsRemaining = 30; //Tiempo para hacer la simulacion
 
-  // ESTADOS
+  // Estados para cada boton y sus animaciones
   bool _turbinasDetenidas = false;
   bool _ventilacionCompletada = false;
   bool _aguaEvacuada = false;
@@ -168,6 +168,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
               _iniciarSimulacion();
             },
             child: const Text(
+              //Reiniciar el simulador del reactor
               "REINICIAR",
               style: TextStyle(
                 color: Colors.white,
@@ -187,7 +188,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            // COLUMNA 1: BOTONES (CONTROL)
+            // Botones de secuencia
             Expanded(
               flex: 3,
               child: Container(
@@ -209,7 +210,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
                     ),
                     const SizedBox(height: 5),
 
-                    // 1. Turbina (Gira mientras está activa)
+                    // 1. Turbina de energia
                     Expanded(
                       child: AnimatedIconBtn(
                         label: "PARAR TURBINA",
@@ -223,12 +224,12 @@ class _ControlRoomPageState extends State<ControlRoomPage>
                     ),
                     const SizedBox(height: 8),
 
-                    // 2. Ventilar (Viento: ESTÁTICO a menos que esté ventilando)
+                    // 2. Ventilar el contenido del reactor
                     Expanded(
                       child: AnimatedIconBtn(
                         label: "VENTILAR GAS",
-                        icon: Icons.air, // ICONO VIENTO
-                        color: Colors.lightGreenAccent, // VERDE PASTEL
+                        icon: Icons.air,
+                        color: Colors.lightGreenAccent,
                         isActive: _turbinasDetenidas && !_ventilacionCompletada,
                         isDone: _ventilacionCompletada,
                         onTap: _accionVentilar,
@@ -238,7 +239,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
                     ),
                     const SizedBox(height: 8),
 
-                    // 3A. Evacuar (Gota cayendo mientras espera)
+                    // 3A. Evacuar agua caliente
                     Expanded(
                       child: AnimatedIconBtn(
                         label: "DRENAR AGUA",
@@ -252,7 +253,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
                     ),
                     const SizedBox(height: 8),
 
-                    // 3B. Inyectar (Agua subiendo mientras espera)
+                    // 3B. Llenar el tanque
                     Expanded(
                       child: AnimatedIconBtn(
                         label: "LLENAR TANQUE",
@@ -266,7 +267,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
                     ),
                     const SizedBox(height: 8),
 
-                    // 4. Apagar (Palpita mientras espera)
+                    // 4. Apagar el nucleo
                     Expanded(
                       child: AnimatedIconBtn(
                         label: "APAGAR NÚCLEO",
@@ -280,7 +281,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
                     ),
                     const SizedBox(height: 15),
 
-                    // 5. EMERGENCIA (REDONDO)
+                    // 5. Boton emergencia
                     const Text(
                       "DETENIDO DE EMERGENCIA",
                       style: TextStyle(
@@ -304,7 +305,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
             ),
             const SizedBox(width: 20),
 
-            // COLUMNA 2: INFO
+            // Informacion sobre el reactor
             Expanded(
               flex: 4,
               child: Column(
@@ -408,7 +409,7 @@ class _ControlRoomPageState extends State<ControlRoomPage>
             ),
             const SizedBox(width: 20),
 
-            // COLUMNA 3: MEDIDORES
+            // Barras de agua y temperatura
             Expanded(
               flex: 2,
               child: Container(

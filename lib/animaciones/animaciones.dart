@@ -51,11 +51,11 @@ class _AnimatedIconBtnState extends State<AnimatedIconBtn>
 
   void _checkAnimation() {
     bool shouldAnimate = false;
-    // 1. Anima mientras esté cargando
+    // 1. Anima mientras esté cargando el icono
     if (widget.animType == AnimType.slideSide) {
       if (widget.isLoading) shouldAnimate = true;
     }
-    // 2. Anima mientras NO esté detenida (isDone)
+    // 2. Anima mientras no este finalizado
     else if (widget.animType == AnimType.rotate) {
       if (!widget.isDone) shouldAnimate = true;
     }
@@ -173,7 +173,7 @@ class _AnimatedIconBtnState extends State<AnimatedIconBtn>
   }
 }
 
-//  BOTÓN DE EMERGENCIA
+//  Boton de emergencia
 class BigRedButton extends StatefulWidget {
   final bool isActive;
   final bool isDone;
@@ -211,7 +211,7 @@ class _BigRedButtonState extends State<BigRedButton>
 
   @override
   Widget build(BuildContext context) {
-    // Si está activo (disponible) y no terminado, tiembla.
+    // Si está activo y no presionado, tiembla sin parar
     if (widget.isActive && !widget.isDone) {
       if (!_ctrl.isAnimating) _ctrl.repeat(reverse: true);
     } else {
@@ -269,7 +269,7 @@ class _BigRedButtonState extends State<BigRedButton>
   }
 }
 
-// --- BARRAS DE ESTADO ---
+// Barras de estado de agua y temperatura
 class GaugeBar extends StatelessWidget {
   final String label;
   final double percentage;
@@ -329,7 +329,7 @@ class GaugeBar extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        // TEXTOS GRANDES
+        // Titulos y valores de la barras
         Text(
           label,
           style: const TextStyle(
