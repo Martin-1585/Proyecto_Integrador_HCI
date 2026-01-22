@@ -51,10 +51,7 @@ class _AnimatedIconBtnState extends State<AnimatedIconBtn>
 
   void _checkAnimation() {
     bool shouldAnimate = false;
-
-    // --- REGLAS DE ANIMACIÓN CORREGIDAS ---
-
-    // 1. Caso VENTILAR (SlideSide): Solo anima si está CARGANDO
+    // 1. Caso CARGANDO (Slide Side): Anima mientras esté cargando
     if (widget.animType == AnimType.slideSide) {
       if (widget.isLoading) shouldAnimate = true;
     }
@@ -176,7 +173,7 @@ class _AnimatedIconBtnState extends State<AnimatedIconBtn>
   }
 }
 
-// --- BOTÓN DE EMERGENCIA ---
+//  BOTÓN DE EMERGENCIA
 class BigRedButton extends StatefulWidget {
   final bool isActive;
   final bool isDone;

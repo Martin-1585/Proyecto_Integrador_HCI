@@ -85,7 +85,6 @@ class _ControlRoomPageState extends State<ControlRoomPage>
     });
   }
 
-  // --- ACCIONES ---
   void _accionDetenerTurbinas() => setState(() => _turbinasDetenidas = true);
 
   void _accionVentilar() {
