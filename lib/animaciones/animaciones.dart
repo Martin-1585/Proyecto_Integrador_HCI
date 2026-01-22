@@ -51,15 +51,15 @@ class _AnimatedIconBtnState extends State<AnimatedIconBtn>
 
   void _checkAnimation() {
     bool shouldAnimate = false;
-    // 1. Caso CARGANDO (Slide Side): Anima mientras esté cargando
+    // 1. Anima mientras esté cargando
     if (widget.animType == AnimType.slideSide) {
       if (widget.isLoading) shouldAnimate = true;
     }
-    // 2. Caso TURBINA (Rotate): Anima mientras NO esté detenida (isDone)
+    // 2. Anima mientras NO esté detenida (isDone)
     else if (widget.animType == AnimType.rotate) {
       if (!widget.isDone) shouldAnimate = true;
     }
-    // 3. RESTO (Gota, Agua, Power): Animan si están ACTIVOS y NO TERMINADOS
+    // 3. Animan si están activos y no terminados
     else {
       if (widget.isActive && !widget.isDone) shouldAnimate = true;
     }
